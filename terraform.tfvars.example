@@ -1,0 +1,38 @@
+############################################################
+###### Cloudflare Zone Variables
+############################################################
+
+cloudflare_email        = "<insert_here>"
+cloudflare_account_id   = "<insert_here>"
+cloudflare_zone_id      = "<insert_here>"
+cloudflare_api_key      = "<insert_here>"
+
+############################################################
+###### GCP Project Variables
+############################################################
+
+gcp_project             = "<insert_here>"
+gcp_label               = "<insert_here>"
+gcp_net_tag             = "<insert_here>"
+
+dns_record              = "<insert_here>"      # Used by Access for domain
+app_tunnel_name         = "SSH GCP"            # Used by Access for name
+
+############################################################
+###### Jumpbox Specifics
+############################################################
+
+zone                    = "europe-north1-a" # Low Co2 Region 94% clean energy in Finland
+server_type             = "e2-standard-4"
+server_name             = "<insert_here>"
+server_image            = "debian-cloud/debian-11"
+network_tier            = "STANDARD"
+script_loc              = "./scripts/jumpbox.tpl"
+pre_empt                = true
+
+# Cloudflare Access Specific Configuration
+service_type            = "ssh"
+session_duration        = "1h"
+access_policy_name      = "ssh only from specific domain"
+email_domain            = "<insert_here>"
+logo_url                = "https://www.cloudflare.com/img/logo-web-badges/cf-logo-on-white-bg.svg"
