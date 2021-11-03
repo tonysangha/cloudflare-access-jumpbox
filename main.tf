@@ -32,6 +32,7 @@ resource "cloudflare_access_application" "jumpbox" {
   domain           = var.dns_record
   type             = var.service_type
   session_duration = var.session_duration
+  logo_url         = var.logo_url
 }
 
 # Cloudflare Team's policy for application created prior
@@ -41,7 +42,7 @@ resource "cloudflare_access_policy" "access_policy" {
   name           = var.access_policy_name
   precedence     = "1"
   decision       = "allow"
-
+  
   include {
     email_domain = [var.email_domain]
   }
@@ -100,7 +101,6 @@ resource "google_compute_instance" "vm_instance" {
       api_token = var.cloudflare_api_key
       cf_email  = var.cloudflare_email
       uuid      = cloudflare_access_application.jumpbox.id
-      logo_url  = var.logo_url
       site_name = var.app_tunnel_name
       domain    = var.dns_record
 

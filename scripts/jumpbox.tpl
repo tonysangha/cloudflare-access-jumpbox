@@ -80,35 +80,3 @@ EOF
 sudo sed -i 's/#PubkeyAuthentication/PubkeyAuthentication/' /etc/ssh/sshd_config
 sudo sed -i '$ a TrustedUserCAKeys /etc/ssh/ca.pub' /etc/ssh/sshd_config
 sudo systemctl restart ssh
-
-# Change logo on Cloudflare Access page (Terraform support not available)
-
-pip3 install requests
-
-sudo cat > ~/logo.py << "EOF"
-#!/bin/python3
-
-import requests
-import json
-
-# Cloudflare account details
-api_token="${api_token}"
-account="${account}"
-uuid="${uuid}"
-email="${cf_email}"
-data ={'name':'${site_name}', 'domain':'${domain}', 'logo_url':'${logo_url}'}
-
-headers = {"content-type": "application/json", \
-			"X-Auth-Key" :   api_token, \
-			"X-Auth-Email": email}
-
-r = requests.put(\
-	'https://api.cloudflare.com/client/v4/accounts/%s/access/apps/%s'\
-	 % (account, uuid), headers=headers, data=json.dumps(data))
-EOF
-
-# run python script
-python3 ~/logo.py
-
-# remove python script
-sudo rm ~/logo.py
