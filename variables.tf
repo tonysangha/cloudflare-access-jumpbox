@@ -100,3 +100,8 @@ variable "pre_empt" {
   description = "Pre-Empt VM"
   type        = string
 }
+
+variable "gcp_fw_rule_name" {
+  description = "VPC Firewall Name"
+  type        = string
+}

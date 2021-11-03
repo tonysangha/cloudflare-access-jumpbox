@@ -42,7 +42,7 @@ resource "cloudflare_access_policy" "access_policy" {
   name           = var.access_policy_name
   precedence     = "1"
   decision       = "allow"
-  
+
   include {
     email_domain = [var.email_domain]
   }
@@ -63,7 +63,7 @@ resource "cloudflare_access_ca_certificate" "ssh_short_lived" {
   - Pass in script to configure the Linux VM post start
 */
 
-resource "google_compute_instance" "vm_instance" {
+resource "google_compute_instance" "ssh-jumpbox" {
 
   zone = var.zone
 
@@ -111,4 +111,17 @@ resource "google_compute_instance" "vm_instance" {
 
       ssh_ca_cert = cloudflare_access_ca_certificate.ssh_short_lived.public_key
   })
+}
+
+resource "google_compute_firewall" "block-ingress-all" {
+  name    = var.gcp_fw_rule_name
+  network = "default"
+  project = var.gcp_project
+
+  deny {
+    protocol = "all"
+  }
+  source_ranges = ["0.0.0.0/0"]
+  priority      = "500"
+  target_tags   = [var.gcp_net_tag]
 }

@@ -13,7 +13,6 @@ cloudflare_api_key      = "<insert_here>"
 
 gcp_project             = "<insert_here>"
 gcp_label               = "<insert_here>"
-gcp_net_tag             = "<insert_here>"
 
 dns_record              = "<insert_here>"      # Used by Access for domain
 app_tunnel_name         = "SSH GCP"            # Used by Access for name
@@ -29,6 +28,10 @@ server_image            = "debian-cloud/debian-11"
 network_tier            = "STANDARD"
 script_loc              = "./scripts/jumpbox.tpl"
 pre_empt                = true
+
+# Firewall Rules - Block all Ingress to instance with target gcp_net_tag
+gcp_net_tag             = "<insert_here>"
+gcp_fw_rule_name        = "<insert_here>"
 
 # Cloudflare Access Specific Configuration
 service_type            = "ssh"
