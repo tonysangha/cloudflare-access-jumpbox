@@ -14,7 +14,7 @@ The following diagram depicts the logical overview of the setup:
 
 ## Requirements
 
-To run the Terraform Plan, you need to ensure the following have been setup prior:
+To run the Terraform plan, you need to ensure the following have been setup prior:
 
 - Terraform installed locally
 - gCloud authentication 
@@ -22,7 +22,7 @@ To run the Terraform Plan, you need to ensure the following have been setup prio
 
 ## Run Terraform
 
-To run the plan, ensure you have edited `terraform.tfvars` with the variables pertinent to your environment. A `terraform.tfvars.example` file is provided for your conveinence, and needs to be renamed prior to running the plan. 
+To run the plan, ensure you have edited `terraform.tfvars` with the variables pertinent to your environment. A `terraform.tfvars.example` file is provided for your conveinence, and needs to be renamed to `terraform.tfvars` prior to running the plan. 
 
 1. Build and configure
 
