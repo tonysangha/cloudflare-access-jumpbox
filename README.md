@@ -22,7 +22,9 @@ To run the Terraform plan, you need to ensure the following have been setup prio
 
 ## Run Terraform
 
-To run the plan, ensure you have edited `terraform.tfvars` with the variables pertinent to your environment. A `terraform.tfvars.example` file is provided for your conveinence, and needs to be renamed to `terraform.tfvars` prior to running the plan. 
+To run the plan, ensure you have edited `terraform.tfvars` with the variables pertinent to your environment. A `terraform.tfvars.example` file is provided for your convenience, and needs to be renamed to `terraform.tfvars` prior to running the plan. 
+
+In the `terraform.tfvars`, change the values `<insert_here>` specific to your requirements/setup. 
 
 1. Build and configure
 
