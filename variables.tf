@@ -17,8 +17,8 @@ variable "cloudflare_email" {
   sensitive   = true
 }
 
-variable "cloudflare_api_key" {
-  description = "Cloudflare API Key"
+variable "cloudflare_api_token" {
+  description = "Cloudflare API Token"
   type        = string
   sensitive   = true
 }

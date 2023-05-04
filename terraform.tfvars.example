@@ -5,7 +5,7 @@
 cloudflare_email        = "<insert_here>"
 cloudflare_account_id   = "<insert_here>"
 cloudflare_zone_id      = "<insert_here>"
-cloudflare_api_key      = "<insert_here>"
+cloudflare_api_token    = "<insert_here>"
 
 ############################################################
 ###### GCP Project Variables

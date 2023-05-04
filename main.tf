@@ -10,7 +10,7 @@ resource "random_id" "tunnel_secret" {
 }
 
 # Create Argo Tunnel in Cloudflare
-resource "cloudflare_argo_tunnel" "auto_tunnel" {
+resource "cloudflare_tunnel" "auto_tunnel" {
   account_id = var.cloudflare_account_id
   name       = var.app_tunnel_name
   secret     = tostring(random_id.tunnel_secret.b64_std)
@@ -20,7 +20,7 @@ resource "cloudflare_argo_tunnel" "auto_tunnel" {
 resource "cloudflare_record" "cname" {
   zone_id = var.cloudflare_zone_id
   name    = var.dns_record
-  value   = "${cloudflare_argo_tunnel.auto_tunnel.id}.cfargotunnel.com"
+  value   = "${cloudflare_tunnel.auto_tunnel.id}.cfargotunnel.com"
   type    = "CNAME"
   proxied = true
 }
@@ -98,14 +98,14 @@ resource "google_compute_instance" "ssh-jumpbox" {
   metadata_startup_script = templatefile(var.script_loc,
     {
       account   = var.cloudflare_account_id
-      api_token = var.cloudflare_api_key
+      api_token = var.cloudflare_api_token
       cf_email  = var.cloudflare_email
       uuid      = cloudflare_access_application.jumpbox.id
       site_name = var.app_tunnel_name
       domain    = var.dns_record
 
       zone1       = var.dns_record
-      tunnel_id   = "${cloudflare_argo_tunnel.auto_tunnel.id}"
+      tunnel_id   = "${cloudflare_tunnel.auto_tunnel.id}"
       tunnel_name = var.app_tunnel_name
       secret      = tostring(random_id.tunnel_secret.b64_std)
 
